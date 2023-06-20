@@ -107,6 +107,29 @@ class ProductManager {
               }
             }
     }
+
+    deleteProduct(id) {
+        const findId = this.products.findIndex(function(element) {
+            return element.id === id;
+          });
+    
+        if (findId === -1) {
+          throw new Error("ID not found");
+        } else {
+          this.products.splice(findId, 1);
+    
+          try {
+            fs.writeFileSync(
+              this.path,
+              JSON.stringify(this.products, null, 2),
+              'utf-8'
+            );
+            console.log("Product deleted successfully.");
+          } catch (error) {
+            console.error('Error in deleteProduct:', error);
+          }
+        }
+      }
  
 }
 
@@ -128,3 +151,4 @@ const manager = new ProductManager('./prueba.json');
 //console.log(manager.getProducts()); 
 //console.log(manager.getProductById(1));
 //console.log(manager.updateProduct(1, {title: 'Nuevo título'}));
+console.log(manager.deleteProduct(2));
