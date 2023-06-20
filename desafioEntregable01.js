@@ -1,3 +1,4 @@
+
 class ProductManager {
 
     constructor(){
@@ -51,10 +52,10 @@ class ProductManager {
 const manager = new ProductManager();
 
 //caso de prueba 1: 
-/*
+
 manager.addProduct("producto prueba", "Este es un producto prueba", 200, "Sin imagen", "abc123", 25);
 console.log(manager.getProducts()); 
-*/
+
 
 //caso de prueba 2: 
 /*
