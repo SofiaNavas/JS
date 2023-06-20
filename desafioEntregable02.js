@@ -129,26 +129,49 @@ class ProductManager {
             console.error('Error in deleteProduct:', error);
           }
         }
-      }
- 
+    }
 }
 
 
 
+//Casos de prueba
 
+// Prueba 1: crear una instancia de la clase "Product Manager"
 
+/*
 const manager = new ProductManager('./prueba.json');
+console.log(manager.getProducts()); 
+*/
 
-/*manager.addProduct(
+//Prueba 2: 
+/*
+const manager = new ProductManager('./prueba.json');
+console.log(manager.getProducts()); 
+manager.addProduct(
   "producto prueba",
   "Este es un producto prueba",
   200,
   "Sin imagen",
-  "abc1",
+  "abc124",
   25
-); */
+); 
+console.log(manager.getProducts());
+*/
 
-//console.log(manager.getProducts()); 
-//console.log(manager.getProductById(1));
-//console.log(manager.updateProduct(1, {title: 'Nuevo título'}));
-console.log(manager.deleteProduct(2));
+//Prueba 3
+/*
+const manager = new ProductManager('./prueba.json');
+console.log(manager.getProductById(1));
+*/
+
+//Prueba 4
+/*
+const manager = new ProductManager('./prueba.json');
+console.log(manager.updateProduct(1, {title: 'Nuevo título'}));
+*/
+
+//Prueba 5
+/*
+const manager = new ProductManager('./prueba.json');
+console.log(manager.deleteProduct(1));
+*/
