@@ -62,15 +62,69 @@ class ProductManager {
       console.error('Error in addProduct:', error);
     }
   }
+  getProducts(){
+    return this.products;
+    }
+
+    getProductById (id) {
+        const findId = this.products.find(function(element) {
+            return element.id === id;
+          });
+
+          if (!findId) {
+            throw new Error("ID not found");
+        } else {
+            return findId
+        }
+    }
+
+    updateProduct (id, updatedFields) {
+        const findId = this.products.findIndex(function(element) {
+            return element.id === id;
+          });
+
+          if (findId === -1) {
+            throw new Error("ID not found");
+        } else {
+            
+            const updatedProduct = {
+                ...this.products[findId],
+                ...updatedFields,
+                id: this.products[findId].id, // Retain the original ID
+              };
+              
+              this.products[findId] = updatedProduct;
+
+              try {
+                fs.writeFileSync(
+                  this.path,
+                  JSON.stringify(this.products, null, 2),
+                  'utf-8'
+                );
+                console.log("Product updated successfully.");
+              } catch (error) {
+                console.error('Error in updateProduct:', error);
+              }
+            }
+    }
+ 
 }
+
+
+
+
 
 const manager = new ProductManager('./prueba.json');
 
-manager.addProduct(
+/*manager.addProduct(
   "producto prueba",
   "Este es un producto prueba",
   200,
   "Sin imagen",
-  "abc124",
+  "abc1",
   25
-);
+); */
+
+//console.log(manager.getProducts()); 
+//console.log(manager.getProductById(1));
+//console.log(manager.updateProduct(1, {title: 'Nuevo título'}));
