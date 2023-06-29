@@ -132,7 +132,7 @@ class ProductManager {
     }
 }
 
-
+module.exports = ProductManager;
 
 //Casos de prueba
 
@@ -152,10 +152,11 @@ manager.addProduct(
   "Este es un producto prueba",
   200,
   "Sin imagen",
-  "abc124",
+  "abc120",
   25
 ); 
 console.log(manager.getProducts());
+
 */
 
 //Prueba 3
