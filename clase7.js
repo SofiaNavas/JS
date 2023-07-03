@@ -1,3 +1,5 @@
+
+
 const express = require('express')
 const ProductManager = require('./desafioEntregable02');
 
@@ -95,3 +97,78 @@ app.get('/products', async (req, res) => {
   app.listen(8080, () => {
     console.log('Servidor iniciado en http://localhost:8080');
   });
+
+/*
+
+  const express = require('express');
+  const bodyParser = require('body-parser');
+
+const app = express();
+app.use(bodyParser.json());
+
+let frase = "Frase inicial";
+
+// GET '/api/frase'
+app.get('/api/frase', (req, res) => {
+  res.json({ frase: frase });
+});
+
+// GET '/api/palabras/:pos'
+app.get('/api/palabras/:pos', (req, res) => {
+  const pos = parseInt(req.params.pos);
+  const palabras = frase.split(' ');
+
+  if (pos > 0 && pos <= palabras.length) {
+    const palabra = palabras[pos - 1];
+    res.json({ buscada: palabra });
+  } else {
+    res.status(404).json({ error: 'Palabra no encontrada' });
+  }
+});
+
+// POST '/api/palabras'
+app.post('/api/palabras', (req, res) => {
+  const palabra = req.body.palabra;
+  frase += " " + palabra;
+  const palabras = frase.split(' ');
+  const pos = palabras.length;
+  res.json({ agregada: palabra, pos: pos });
+});
+
+// PUT '/api/palabras/:pos'
+app.put('/api/palabras/:pos', (req, res) => {
+  const pos = parseInt(req.params.pos);
+  const palabra = req.body.palabra;
+  const palabras = frase.split(' ');
+
+  if (pos > 0 && pos <= palabras.length) {
+    const anterior = palabras[pos - 1];
+    palabras[pos - 1] = palabra;
+    frase = palabras.join(' ');
+    res.json({ actualizada: palabra, anterior: anterior });
+  } else {
+    res.status(404).json({ error: 'Palabra no encontrada' });
+  }
+});
+
+// DELETE '/api/palabras/:pos'
+app.delete('/api/palabras/:pos', (req, res) => {
+  const pos = parseInt(req.params.pos);
+  const palabras = frase.split(' ');
+
+  if (pos > 0 && pos <= palabras.length) {
+    const eliminada = palabras.splice(pos - 1, 1);
+    frase = palabras.join(' ');
+    res.json({ eliminada: eliminada[0] });
+  } else {
+    res.status(404).json({ error: 'Palabra no encontrada' });
+  }
+});
+
+// Iniciar el servidor
+const port = 8080;
+app.listen(port, () => {
+  console.log(`Servidor en ejecución en http://localhost:8080`);
+});
+
+*/
