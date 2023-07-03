@@ -23,7 +23,7 @@ class ProductManager {
     }
   }
 
-  addProduct(title, description, price, thumbnail, code, stock) {
+ /* addProduct(title, description, price, thumbnail, code, stock) {
     if (!title || !description || !price || !thumbnail || !code || !stock) {
       throw new Error(
         "Title, description, price, thumbnail, code, and stock are mandatory properties."
@@ -62,6 +62,49 @@ class ProductManager {
       console.error('Error in addProduct:', error);
     }
   }
+
+  */
+
+  addProduct(data) {
+    if (!data.title || !data.description || !data.price || !data.thumbnail || !data.code || !data.stock) {
+      throw new Error(
+        "Title, description, price, thumbnail, code, and stock are mandatory properties."
+      );
+    }
+
+    const findCode = this.products.find(function(element) {
+        return element.code === data.code;
+         });
+
+
+        if (findCode) {
+            throw new Error("El campo code no se puede repetir");
+       }
+
+
+    const product = {
+      id: this.products.length + 1,
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      thumbnail: data.thumbnail,
+      code: data.code,
+      stock: data.stock,
+    };
+
+    try {
+      this.products.push(product);
+      fs.writeFileSync(
+        this.path,
+        JSON.stringify(this.products, null, 2),
+        'utf-8'
+      );
+      console.log("Product added successfully.");
+    } catch (error) {
+      console.error('Error in addProduct:', error);
+    }
+  }
+
   getProducts(){
     return this.products;
     }
