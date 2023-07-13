@@ -10,7 +10,7 @@ const productManager = new ProductManager('./prueba.json');
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-/
+
 
 
 productRouter.get('/', (req, res) => {
